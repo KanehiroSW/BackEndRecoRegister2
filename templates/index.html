@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Gestos</title>
+</head>
+<body>
+    <h1>Detección de Gestos</h1>
+    
+    <!-- Selección del laboratorio -->
+    <div id="select-lab">
+        <label for="lab-number">Seleccione el número de laboratorio:</label>
+        <select id="lab-number" onchange="setLabNumber(this.value)">
+            <option value="906">Lab 906</option>
+            <option value="907">Lab 907</option>
+            <option value="908">Lab 908</option>
+            <option value="909">Lab 909</option>
+            <option value="910">Lab 910</option>
+            <!-- Agrega más opciones según sea necesario -->
+        </select>
+    </div>
+
+    <!-- Mensaje inicial -->
+    <div id="start-detection">
+        <p>¿Quiere iniciar la detección?</p>
+        <button onclick="startDetection()">Sí</button>
+        <button onclick="postponeDetection()">Aún no</button>
+    </div>
+    
+    <!-- Video feed y mensajes -->
+    <div id="detection-container" style="display: none;">
+        <img id="video" src="{{ url_for('video_feed') }}" width="640" height="480">
+        <p id="gesture"></p>
+        <p id="confirmation-message" style="display: none;">¿Quiere mandar este reporte?</p>
+        <button id="confirm-button" style="display: none;" onclick="confirmReport()">Sí</button>
+        <button id="retry-button" style="display: none;" onclick="retryDetection()">Intentar de nuevo</button>
+    </div>
+    
+    <!-- Mensaje de confirmación al posponer la detección -->
+    <div id="postpone-message" style="display: none;">
+        <p>Cuando estés listo puede iniciar el programa</p>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

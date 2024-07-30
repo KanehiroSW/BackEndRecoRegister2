@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../templates/Css/Register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Registrar Docente</title>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-col">
+            <div class="btn-box">
+                <button class="btn btn-1" id="docente">Docente</button>
+                <button class="btn btn-2" id="administrador">Administrador</button>
+            </div>
+            <form class="form-box docente-form" action="{{ url_for('register_docente') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-title">
+                    <span>DOCENTE</span>
+                </div>
+                    <div class="form-inputs">
+                        <div class="input-box">
+                            <input class="inputs input-field" type="text" name="username" placeholder="Usuario:">
+                            <i class='bx bxs-user-circle'></i>
+                        </div>
+                        <div class="input-box">
+                            <input class="inputs input-field" type="password" name="password" placeholder="Contraseña:" required>
+                            <i class='bx bxs-key'></i>
+                        </div>
+                        <div class="input-box">
+                            <input class="inputs input-fieldsave" type="file" name="image" accept="image/*" required>
+                            <i class='bx bxs-archive-in'></i>
+                        </div>
+                        <div class="input-box">
+                            <button class="inputs submit-btn" type="submit">
+                                <span>REGISTRAR</span>
+                                <i class='bx bx-save' ></i>
+                            </button>
+                        </div>
+                        <div class="input-box">
+                            <button class="inputs submit-btn" type="button" href="{{ url_for('admin_dashboard') }}">
+                                <span>VOLVER AL DASHBOARD</span>
+                                <i class='bx bx-arrow-back' ></i>
+                            </button>
+                        </div>
+                    </div>
+            </form>
+
+
+            <form class="form-box administrador-form"action="{{ url_for('register_admin') }}" method="POST" enctype="multipart/form-data">
+                <div class="form-title">
+                    <span>ADMINISTRADOR</span>
+                </div>
+                    <div class="form-inputs">
+                        <div class="input-box">
+                            <input class="inputs input-field" type="text" name="username" placeholder="Usuario:">
+                            <i class='bx bxs-user-circle'></i>
+                        </div>
+                        <div class="input-box">
+                            <input class="inputs input-field" type="password" name="password" placeholder="Contraseña:" required>
+                            <i class='bx bxs-key'></i>
+                        </div>
+                        <div class="input-box">
+                            <input class="inputs input-fieldsave" type="file" name="image" accept="image/*" required>
+                            <i class='bx bxs-archive-in'></i>
+                        </div>
+                        <div class="input-box">
+                            <button class="inputs submit-btn" type="submit">
+                                <span>REGISTRAR</span>
+                                <i class='bx bx-save' ></i>
+                            </button>
+                        </div>
+                        <div class="input-box">
+                            <button class="inputs submit-btn" type="button" href="{{ url_for('admin_dashboard') }}">
+                                <span>VOLVER AL DASHBOARD</span>
+                                <i class='bx bx-arrow-back' ></i>
+                            </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script src="../static/main.js"></script>
+    </body>
+</html>

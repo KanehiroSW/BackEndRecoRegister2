@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Login</title>
+</head>
+<body>
+    <h1>Facial Login</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="loginButton">Login</button>
+    <p id="message"></p>
+
+    <script>
+        const video = document.getElementById('video');
+        const loginButton = document.getElementById('loginButton');
+        const message = document.getElementById('message');
+
+        // Acceder a la cámara
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Error accessing camera: ', err);
+            });
+
+        loginButton.addEventListener('click', async () => {
+            // Capturar un frame del video
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            // Enviar la imagen al servidor para el login facial
+            try {
+                const response = await fetch('/facial_login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ image: imageData })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    window.location.href = result.redirect_url;
+                } else {
+                    message.innerText = result.message;
+                }
+            } catch (error) {
+                console.error('Error during login: ', error);
+                message.innerText = 'Error during login. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
+

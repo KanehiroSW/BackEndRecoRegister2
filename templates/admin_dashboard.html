@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../templates/Css/Reporte.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard Administrador</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+                <div  class="btn-menu">
+                    <label for="btn-menu" class="icon-menu">
+                        <i class='bx bx-menu'></i>
+                    </label>
+                    <label for="" class="logo">
+                        <h1>DASHBOARD ADMINISTRADOR</h1>
+                    </label>
+                </div>  
+        </div>
+    </header>
+	<div class="capa"></div>
+    <input type="checkbox" id="btn-menu">
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <a href="{{ url_for('register_docente') }}">Registrar Docente</a>
+                <a href="{{ url_for('register_admin') }}">Registrar Administrador</a>                    
+            </nav>
+            <label for="btn-menu" class="icon-equis">
+                <i class='bx bx-x'></i>
+            </label>
+        </div>
+    </div>
+    
+    <div class="body">
+        <div class="table-column">
+            <div class="table-head">
+                <h2>Usuarios</h2>
+                <h2>Reportes</h2>            
+            </div>
+            <div class="table-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <!-- Añade más columnas según los datos de usuario que quieras mostrar -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in usuarios %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.role }}</td>
+                            <!-- Añade más columnas según los datos de usuario que quieras mostrar -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hora</th>
+                    <th>Tipo de Ayuda</th>
+                    <th>Nº Lab</th>
+                    <th>Docente</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reporte in reportes %}
+                <tr>
+                    <td>{{ reporte.timestamp }}</td>
+                    <td>{{ reporte.tipo_ayuda }}</td>
+                    <td>{{ reporte.num_lab }}</td>
+                    <td>{{ reporte.docente.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    
+</body>
+</html>

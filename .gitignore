@@ -1,0 +1,14 @@
+#Entorno virtual
+.venv/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor
+.vscode/
+.idea/
+
+# Archivos temporales y de caché
+*.log
+*.tmp
